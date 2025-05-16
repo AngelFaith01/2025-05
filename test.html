@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #f7f8fc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      border: none;
+      border-radius: 12px;
+    }
+    .card-header {
+      font-weight: 600;
+    }
+    .status-pill {
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 12px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid p-4">
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white">
+        <div class="card-body">
+          <h5>$3468.96</h5>
+          <p class="mb-0">Total Monthly Earning</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-danger text-white">
+        <div class="card-body">
+          <h5>$432</h5>
+          <p class="mb-0">Revenue Status</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-info text-white">
+        <div class="card-body">
+          <h5>$432</h5>
+          <p class="mb-0">Page View</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h5>$432</h5>
+          <p class="mb-0">Revenue Rate</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header">Earnings Overview</div>
+        <div class="card-body">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">Traffic Sources</div>
+        <div class="card-body">
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header">Recent Activities</div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">Task Updated</li>
+            <li class="list-group-item">Deal Added</li>
+            <li class="list-group-item">Article Published</li>
+            <li class="list-group-item">Stock Updated</li>
+            <li class="list-group-item">Comment Replied</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header">Order Status</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Invoice</th>
+                <th>Customer</th>
+                <th>From</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>12345</td>
+                <td>Cheryl Doss</td>
+                <td>Brazil</td>
+                <td>$894</td>
+                <td><span class="status-pill bg-success">Paid</span></td>
+              </tr>
+              <tr>
+                <td>12346</td>
+                <td>Benjie Clark</td>
+                <td>Korea</td>
+                <td>$330</td>
+                <td><span class="status-pill bg-warning">Pending</span></td>
+              </tr>
+              <tr>
+                <td>12347</td>
+                <td>Sarah Dudek</td>
+                <td>Japan</td>
+                <td>$450</td>
+                <td><span class="status-pill bg-danger">Declined</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const lineCtx = document.getElementById('lineChart');
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        label: 'Earnings',
+        data: [1200, 1900, 3000, 2500, 4000, 3600],
+        backgroundColor: 'rgba(78, 115, 223, 0.05)',
+        borderColor: 'rgba(78, 115, 223, 1)',
+        borderWidth: 2,
+        tension: 0.4
+      }]
+    }
+  });
+
+  const doughnutCtx = document.getElementById('doughnutChart');
+  new Chart(doughnutCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Direct', 'Referral', 'Search'],
+      datasets: [{
+        data: [33, 55, 12],
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc']
+      }]
+    },
+    options: {
+      cutout: '70%'
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+/*our main rules starts*/
+img {
+  width: 150px;
+  height: 150px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  background-color: #ffffff;
+  color: #38344f;
+  font-family: 'Montserrat', sans-serif;
+}
+
+aside {
+  width: 240px;
+}
+
+p {
+  color: #b0b0b8;
+}
+
+summary {
+  padding: 15px;
+  border-radius: 7px;
+  border: solid 2px #ccc;
+  font-weight: bold;
+}
+
+/*our main rules ends*/
+/*our nav rules starts*/
+nav {
+  padding: 40px;
+}
+
+nav input {
+  width: 500px;
+  position: relative;
+  left: 270px;
+  height: 40px;
+  border-radius: 7px;
+  border-color: #f3f4f6;
+  bottom: 10px;
+  border: solid 2px #f3f4f6;
+}
+
+nav ul {
+  float: right;
+  width: 340px;
+}
+
+nav ul li {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+/*our nav rules ends*/
+/*our header rules starts*/
+header h1 {
+  position: relative;
+  left: 270px;
+  width: 400px;
+  font-weight: bold;
+}
+
+/*our header rules ends*/
+/*our aside rules starts*/
+aside header {
+  padding: 40px;
+}
+
+aside header h3 {
+  padding-left: 30px;
+  font-weight: bold;
+  font-size: 2.3rem;
+}
+
+.aside-1 {
+  position: relative;
+  bottom: 147px;
+  border-right: 1.5px solid #f3f4f6;
+}
+
+.first-section {
+  width: 150px;
+  text-align: left;
+  padding: 50px;
+  line-height: 50px;
+}
+
+.first-section p {
+  text-align: center;
+  line-height: normal;
+}
+
+.first-section p span {
+  display: block;
+}
+
+.first-section img {
+  padding: 50px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.the-button {
+  text-align: center;
+}
+
+.first-section input {
+  text-align: center;
+  width: 70px;
+  height: 30px;
+  background-color: #38344f;
+  border-radius: 7px;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #302c43;
+}
+
+.aside-2 { 
+  padding-left: 50px;
+  position: relative;
+  bottom: 800px;
+  background-color: #f8f9fb;
+  display: inline-block;
+  height: 700px;
+  border-radius: 30px;
+}
+
+.second-section {
+  padding: 50px;
+  width: 200px;
+  float: right;
+}
+
+.second-section details {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 30px;
+  margin-bottom: 40px;
+}
+
+.second-section details ul li {
+  height: 50px;
+  margin: 20px;
+  padding: 7px;
+  border-bottom: solid #f7f7f9;
+  line-height: normal;
+}
+
+.second-section details ul li h4 {
+  font-weight: bold;
+}
+
+.second-section details ul li p {
+  display: inline-block;
+}
+
+.second-section details ul li span {
+  color: #2f2c3d;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*our aside rules ends*/
+/*our article rules starts*/
+article {
+  position: relative;
+  left: 270px;
+  right: 0;
+  width: 720px;
+  overflow: hidden;
+  position: relative;
+  bottom: 900px;
+  display: inline-block;
+}
+ 
+.activity {
+  padding-bottom: 70px;
+}
+
+.activity section {
+  display: inline-block;
+  width: 200px;
+  height: 250px;
+  border-radius: 20px;
+  margin: 15px;
+  text-align: center;
+  position: relative;
+  top: 50px;
+}
+
+.flightss {
+  background-color: #f4f2ff;
+}
+
+.steps {
+  background-color: #fff2ec;
+}
+
+.destance {
+  background-color: #ecfbff;
+}
+
+.activity section img {
+  position: relative;
+  bottom: 30px;
+}
+article summary{
+  width: 655px;
+  border:solid 1.5px #f3f4f6;
+}
+article section p {
+  margin-bottom: 15px;
+}
+
+article section input {
+  border: 1px solid #fff;
+  border-radius: 10px;
+  text-align: center;
+  height: 30px;
+  width: 70px;
+  font-weight: bold;
+  padding: 1px;
+}
+.description{
+  font-size: 0.7rem;
+  margin-top: 8px;
+  font-weight: bold;
+} 
+.heart-div {
+  width: 500px;
+  height: 100px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.heart-div input{
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  height: 30px;
+  width: 70px;
+  font-weight: bold;
+  padding: 1px;
+}
+.your-bpm-section{ 
+  display: inline-block;
+  height: 70px;
+  width: 110px;
+  padding: 10px;
+  padding-left: 50px;
+  border-radius: 9px;
+  background-color: #8d93ab;
+
+}
+
+.heart-section {
+  display: inline-block; 
+  width: 295px;
+  height: 70px;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+  left: 30px;
+  padding: 10px;
+  background-color: #d6e0f0;
+  padding-right: 20px;
+}
+
+.health meter {
+  width: 100px;
+  display: inline-block;
+}
+
+.bpm-div {
+  margin: 70px;
+  text-align: center;
+}
+
+.bpm {
+  display: inline-block;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 9px;
+  border: solid 1px #333;
+  background-color: #ffd5cd;
+}
+
+.bpm input {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  height: 30px;
+  width: 70px;
+  font-weight: bold;
+  padding: 1px;
+}
+
+/*our article rules ends*/

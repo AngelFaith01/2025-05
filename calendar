@@ -1,0 +1,127 @@
+// if i clicked date it only appears 32 of that specific date
+// if there`s a scheduled events for that month the color of the font should change to different color or just highlight it
+// also if there`s a shecduled event it should be list down or highlight to easily reminded the end user that it has a scheduled event for that day o taht month
+// the inputbox for adding the event is not working i cannot schedule any event
+
+<div id="mini-calendar" style="max-width:300px; margin:auto; background: #f8f9fa; border-radius:10px; padding:1rem; box-shadow: 5px 0px 10px 0px #1c3347; font-family: 'Poppins', Sans serif;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <button onclick="prevMonth()" style="background:none; border:none; font-size:1.2rem;">&#8592;</button>
+        <span id="calendar-month" style="font-weight:bold; color: "></span>
+        <button onclick="nextMonth()" style="background:none; border:none; font-size:1.2rem;">&#8594;</button>
+    </div>
+    <table style="width:100%; text-align:center; margin-top:0.5rem;">
+        <thead>
+            <tr style="background-color: #6184ac; border: #1c3347 .5px solid;">
+                <th style="color:rgb(71, 13, 13); border: #1c3347 .5px solid;">Su</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">Mo</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">Tu</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">We</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">Th</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">Fr</th>
+                <th style="color: rgb(37, 34, 34); border: #1c3347 .5px solid;">Sa</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body" style="border: #1c3347 .5px solid;"></tbody>
+    </table>
+    <div id="schedule-form" style="display:none; margin-top:1rem;">
+        <h6 id="selected-date"></h6> 
+        <div class="form-group">
+          <input type="text" class="form-control" style="border: #1c3347 .5px solid; border-radius: 15px;" name="event_title" placeholder="Event Title" required>
+          
+          <div style="display: flex; justify-content: right; margin-right: .5rem; margin-top: .5rem;">
+            <button type="button" class="btn btn-outline-secondary btn-sm text-dark" style="border: #1c3347 .5px solid; border-radius: 15px; background-color: transparent;">Submit</button>
+          </div>
+        </div>
+      </div>
+    <div id="schedule-list" style="margin-top:1rem;"></div>
+</div>
+
+<script>
+let today = new Date();
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
+let selectedDay = null;
+
+const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+let schedules = JSON.parse(localStorage.getItem("schedules") || "{}");
+
+function showCalendar(month, year) {
+    let firstDay = (new Date(year, month)).getDay();
+    let daysInMonth = 32 - new Date(year, month, 32 ).getDate(); //once picked a day, it only appears 32 of the selected month
+    let tbl = document.getElementById("calendar-body");
+    tbl.innerHTML = "";
+    document.getElementById("calendar-month").innerText = monthNames[month] + " " + year;
+
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+        let row = document.createElement("tr");
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDay) {
+                let cell = document.createElement("td");
+                cell.innerHTML = "";
+                row.appendChild(cell);
+            } else if (date > daysInMonth) {
+                break;
+            } else {
+                let cell = document.createElement("td");
+                cell.innerHTML = date;
+                cell.style.cursor = "pointer";
+                let key = `${year}-${month+1}-${date}`;
+                if (schedules[key]) {
+                    cell.style.background = "#ffe082";
+                }
+                if (
+                    date === today.getDate() &&
+                    year === today.getFullYear() &&
+                    month === today.getMonth()
+                ) {
+                    cell.style.background = "#6184ac";
+                    cell.style.color = "#fff";
+                    cell.style.borderRadius = "50%";
+                }
+                cell.onclick = function() { openScheduleForm(date, month, year); };
+                row.appendChild(cell);
+                date++;
+            }
+        }
+        tbl.appendChild(row);
+    }
+    showScheduleList();
+}
+
+function prevMonth() {
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear);
+}
+
+function nextMonth() {
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear);
+}
+
+function openScheduleForm(day, month, year) {
+    selectedDay = {day, month, year};
+    document.getElementById("schedule-form").style.display = "block";
+    document.getElementById("selected-date").innerText = `Add schedule for: ${monthNames[month]} ${day}, ${year}`;
+    document.getElementById("schedule-input").value = schedules[`${year}-${month+1}-${day}`] || "";
+}
+ 
+function showScheduleList() {
+    let listDiv = document.getElementById("schedule-list");
+    let html = "<b>Schedules this month:</b><ul>";
+    let found = false;
+    for (let d = 1; d <= 31; d++) {
+        let key = `${currentYear}-${currentMonth+1}-${d}`;
+        if (schedules[key]) {
+            html += `<li><b>${monthNames[currentMonth]} ${d}:</b> ${schedules[key]}</li>`;
+            found = true;
+        }
+    }
+    html += "</ul>";
+    listDiv.innerHTML = found ? html : "<i>No schedules for this month.</i>";
+}
+
+showCalendar(currentMonth, currentYear);
+</script>
